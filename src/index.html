@@ -2,21 +2,37 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8" />
-    <title>static-site-boilerplate index</title>
+    <title>mini-app vfx</title>
     <analytics></analytics>
   </head>
 
   <body class="index">
-    <div class="images">
-      <div class="image" id="bgPNG"></div>
-      <div class="image" id="bgJPG"></div>
-      <div class="image" id="bgSVG"></div>
-      <img src="images/image.png" />
-      <img src="images/image.jpg" />
-      <img src="images/image.svg" />
-    </div>
+    <h1>Открой мир визуальных эффектов: как создают магию кино</h1>
+    <p>
+      Добро пожаловать в пространство, где реальность расширяется, а границы
+      возможного исчезают. Здесь мы разбираем визуальные эффекты так, как они
+      есть на самом деле: честно, глубоко и с уважением к ремеслу. Наше медиа
+      рассказывает, как устроены VFX в современных фильмах, сериалах и играх —
+      от зелёного экрана и композинга до симуляций, рендера и полного цифрового
+      производства. Мы показываем не только инструменты, но и людей, которые
+      строят этот мир кадр за кадром. Следите за разбором сцен, изучайте
+      пайплайны, вдохновляйтесь бекстейджем и растите вместе с индустрией. Здесь
+      начинается магия, которую зритель никогда не видит — но именно она делает
+      кино живым.
+    </p>
+    <form
+      action="http://localhost:3000/api/v1/subscribers.json"
+      accept-charset="UTF-8"
+      method="post"
+    >
+      <input type="email" name="subscriber[email]" id="subscriber_email" />
 
-    <div>This is a landing page</div>
-    <a href="./pages/page.html">Go to an internal page</a>
+      <input
+        type="submit"
+        name="commit"
+        value="Create Subscription"
+        data-disable-with="Create Subscription"
+      />
+    </form>
   </body>
 </html>

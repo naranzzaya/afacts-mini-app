@@ -8,8 +8,7 @@ const path = require('path')
 
 module.exports = {
   entry: {
-    index: './src/index.js',
-    page: './src/page.jsx'
+    index: './src/index.js'
   },
   output: {
     filename: '[name].js',
@@ -64,7 +63,14 @@ module.exports = {
       filename: './index.html',
       chunks: ['index']
     }),
-
+    // Preview page
+    new HtmlWebpackPlugin({
+      hash: true,
+      scriptLoading: 'blocking',
+      template: './src/preview.html',
+      filename: './preview.html',
+      chunks: ['index']
+    }),
     // Partials
     new HtmlWebpackPartialsPlugin([
       {
