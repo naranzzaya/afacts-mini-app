@@ -1,4 +1,12 @@
 import './index.css'
+import logo from './images/logo.svg'
+import bgVideo from './images/a_facts_bg_video.mp4'
+
+const logoImg = document.querySelector('#logo img')
+logoImg.src = logo
+
+const videoSource = document.querySelector('#bg-video source')
+videoSource.src = bgVideo
 function initSubscriptionFrom() {
   const form = document.querySelector('form')
   const input = document.querySelector('input[type=email]')

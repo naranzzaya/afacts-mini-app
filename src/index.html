@@ -1,31 +1,42 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ru">
   <head>
     <meta charset="utf-8" />
-    <title>mini-app vfx</title>
+    <title>mini-app a_facts</title>
     <analytics></analytics>
   </head>
 
-  <body class="index">
-    <h1>Открой мир визуальных эффектов: как создают магию кино</h1>
-    <p>
-      Добро пожаловать в пространство, где реальность расширяется, а границы
-      возможного исчезают. Здесь мы разбираем визуальные эффекты так, как они
-      есть на самом деле: честно, глубоко и с уважением к ремеслу. Наше медиа
-      рассказывает, как устроены VFX в современных фильмах, сериалах и играх —
-      от зелёного экрана и композинга до симуляций, рендера и полного цифрового
-      производства. Мы показываем не только инструменты, но и людей, которые
-      строят этот мир кадр за кадром. Следите за разбором сцен, изучайте
-      пайплайны, вдохновляйтесь бекстейджем и растите вместе с индустрией. Здесь
-      начинается магия, которую зритель никогда не видит — но именно она делает
-      кино живым.
-    </p>
-    <form
+  <body>
+    <div id="custom-cursor"></div>
+
+    <div id="logo">
+      <img alt="a_facts logo" />
+    </div>
+
+    <video autoplay muted loop playsinline id="bg-video">
+      <source type="video/mp4">
+    </video>
+
+    <div class="coming_soon">
+      <h1>
+        Медиа-сервис<br>
+        о&nbsp;визуальных эффектах<br>
+        в&nbsp;киноиндустрии
+      </h1>
+
+      <p>
+        Уникальный проект для&nbsp;тех, кто&nbsp;хочет не&nbsp;просто смотреть кино,
+        а&nbsp;понимать, как&nbsp;создается его магия.
+      </p>
+
+      <p>Подпишитесь, чтобы не пропустить релиз:</p>
+
+    <form id="subscribe-form"
       action="http://localhost:3000/api/v1/subscribers.json"
       accept-charset="UTF-8"
       method="post"
     >
-      <input type="email" name="subscriber[email]" id="subscriber_email" />
+      <input type="email" placeholder="Ваш e-mail" name="subscriber[email]" id="subscriber_email" />
 
       <input
         type="submit"
