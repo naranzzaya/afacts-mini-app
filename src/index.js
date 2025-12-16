@@ -1,6 +1,5 @@
 import './index.css'
 import logo from './images/logo.svg'
-import bgVideo from './images/a_facts_bg_video.mp4'
 
 const logoImg = document.querySelector('#logo img')
 logoImg.src = logo
