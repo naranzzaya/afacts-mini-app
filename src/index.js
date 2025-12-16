@@ -1,10 +1,5 @@
 import './index.css'
 
-const logoImg = document.querySelector('#logo img')
-logoImg.src = logo
-
-const videoSource = document.querySelector('#bg-video source')
-videoSource.src = bgVideo
 function initSubscriptionFrom() {
   const form = document.querySelector('form')
   const input = document.querySelector('input[type=email]')
@@ -36,10 +31,11 @@ function initSubscriptionFrom() {
         const message = document.createElement('p')
         message.innerText = data.success_text
         message.style.marginTop = '20px'
+        message.style.fontSize = '2rem'
 
         const link = document.createElement('a')
-        link.innerText = 'Посмотрите последние Q&A'
-        link.href = '/preview.html'
+        // link.innerText = 'Посмотрите последние Q&A'
+        // link.href = '/preview.html'
 
         container.appendChild(message)
         container.appendChild(link)
