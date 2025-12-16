@@ -1,11 +1,156 @@
-body.index {
+:root {
+  --forma: 'Forma DJR Cyrillic', sans-serif;
+  --arial: 'Arial Narrow', sans-serif;
+  --arialbold: 'Arial Narrow Bold', sans-serif;
+  --white: #fff6ff;
+  --black: #000000;
+  --green: #9cff5b;
+  --yellow: #fdff6e;
+  --pink: #ff78ff;
+  --cyan: #6af5ff;
+  --green_secondary: #c4ff9d;
+  --yellow_secondary: #feffa8;
+  --pink_secondary: #ffaeff;
+  --cyan_secondary: #a6f9ff;
+}
+
+@font-face {
+  font-family: 'Forma DJR Cyrillic';
+  src: font-url(
+        '/src/stylesheets/fonts/FormaDJRCyrillicDeck-Regular-Testing.woff2'
+      )
+      format('woff2'),
+    font-url('/src/stylesheets/fonts/FormaDJRCyrillicDeck-Regular-Testing.woff')
+      format('woff'),
+    font-url('/src/stylesheets/fonts/FormaDJRCyrillicDeck-Regular-Testing.ttf')
+      format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Arial Narrow';
+  src: font-url('/src/stylesheets/fonts/arialnarrow.woff2') format('woff2'),
+    font-url('/src/stylesheets/fonts/arialnarrow.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Arial Narrow Bold';
+  src: font-url('/src/stylesheets/fonts/arialnarrow_bold.woff2') format('woff2'),
+    font-url('/src/stylesheets/fonts/arialnarrow_bold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  height: 200vh;
+  overflow-x: hidden;
+  background: #000000;
+  color: #fff6ff;
+}
+h1 {
+  font-family: var(--arialbold);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  margin: 0;
+  line-height: 100%;
+  font-size: 2.8rem;
+  margin-bottom: 1.8rem;
+  font-family: var(--arialbold);
+}
+p {
+  font-family: var(--forma);
+  letter-spacing: 0.04em;
+  font-size: 1rem;
+  margin: 0;
+  line-height: 140%;
+}
+#custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  transition: background-color 0s ease;
+}
+#logo {
+  position: fixed;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  pointer-events: none;
+}
+
+#logo img {
+  width: 110px;
+  display: block;
+}
+#bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -2;
+}
+.coming_soon {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  width: 50vw;
+  height: 100vh;
+  margin: auto;
+  text-align: center;
 
-  & > div,
-  & > a {
-    margin: 10px 0;
+  p {
+    width: 20vw;
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    width: 40vw;
+  }
+
+  form {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  input[type='email'] {
+    padding: 4px;
+    font-family: var(--forma);
+    letter-spacing: 0.04em;
+    font-size: 1rem;
+    margin: 0;
+    line-height: 140%;
+    background-color: var(--black);
+    border: solid 2px var(--green);
+  }
+
+  input[type='submit'] {
+    padding: 3px 4px;
+    background: var(--green);
+    border: none;
+    cursor: pointer;
+    font-family: var(--arialbold);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    margin: 0;
+    line-height: 100%;
+    font-size: 1.2rem;
+
+    &:hover {
+      background-color: var(--green_secondary);
+    }
   }
 }

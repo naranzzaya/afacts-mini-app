@@ -1,5 +1,4 @@
 import './index.css'
-import logo from './images/logo.svg'
 
 const logoImg = document.querySelector('#logo img')
 logoImg.src = logo
