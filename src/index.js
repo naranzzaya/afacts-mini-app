@@ -34,8 +34,8 @@ function initSubscriptionFrom() {
         message.style.fontSize = '2rem'
 
         const link = document.createElement('a')
-        // link.innerText = 'Посмотрите последние Q&A'
-        // link.href = '/preview.html'
+        link.innerText = 'Посмотрите последние Q&A'
+        link.href = '/preview.html'
 
         container.appendChild(message)
         container.appendChild(link)
