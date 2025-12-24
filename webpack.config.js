@@ -1,13 +1,13 @@
-const path = require('path')
+// const path = require('path')
 
-module.exports = {
-  devServer: {
-    static: [
-      {
-        directory: path.resolve(__dirname, 'public'),
-        publicPath: '/'
-      }
-    ],
-    hot: true
-  }
-}
+// module.exports = {
+//   devServer: {
+//     static: [
+//       {
+//         directory: path.resolve(__dirname, 'public'),
+//         publicPath: '/'
+//       }
+//     ],
+//     hot: true
+//   }
+// }
