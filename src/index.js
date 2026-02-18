@@ -70,39 +70,35 @@ function authorizeUser() {
 function initLoginForm() {
   const form = document.getElementById('login_form')
   const url = form.action
+  console.log('texttext')
+
+  // form.addEventListener('submit', (e) => {
+  //   e.preventDefault()
+
+  //   const formData = new FormData(form)
+
+  //   fetch(url, {
+  //     method: 'POST',
+  //     body: formData
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log(data)
+  //       console.log(data.jwt)
+  //       Cookies.set('jwt', data.jwt)
+  //     })
+  // })
 
   form.addEventListener('submit', (e) => {
     e.preventDefault()
 
     const formData = new FormData(form)
-
     fetch(url, {
       method: 'POST',
       body: formData
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data)
-        console.log(data.jwt)
-        Cookies.set('jwt', data.jwt)
-      })
-  })
-
-  submit.addEventListener('click', (e) => {
-    e.preventDefault()
-
-    const params = {
-      subscriber: {
-        email: input.value
-      }
-    }
-
-    fetch(url, {
-      method: 'POST',
-      body: JSON.stringify(params),
-      headers: {
-        'Content-Type': 'application/json; charset=UTF-8'
-      }
+      // headers: {
+      //   'Content-Type': 'application/json; charset=UTF-8'
+      // }
     })
       .then((response) => response.json())
       .then((data) => {
@@ -141,6 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (document.body.classList.contains('index')) {
     initSubscriptionFrom()
     authorizeUser()
+    initLoginForm()
   } else if (document.body.classList.contains('preview')) {
     initPreviewPage()
   }
