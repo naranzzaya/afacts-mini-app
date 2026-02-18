@@ -1,4 +1,5 @@
 import './index.css'
+import Cookies from 'js-cookie'
 
 function initSubscriptionFrom() {
   const form = document.getElementById('subscription_form')
@@ -47,6 +48,25 @@ function initSubscriptionFrom() {
   })
 }
 
+function authorizeUser() {
+  const jwt = Cookies.get('jwt')
+
+  if (jwt) {
+    fetch('http://localhost:3000/api/v1/authorize_by_jwt.json', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${jwt}`
+      }
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data)
+      })
+  } else {
+    initLoginForm()
+  }
+}
+
 function initLoginForm() {
   const form = document.getElementById('login_form')
   const url = form.action
@@ -63,6 +83,8 @@ function initLoginForm() {
       .then((response) => response.json())
       .then((data) => {
         console.log(data)
+        console.log(data.jwt)
+        Cookies.set('jwt', data.jwt)
       })
   })
 
@@ -118,7 +140,7 @@ function initPreviewPage() {
 document.addEventListener('DOMContentLoaded', () => {
   if (document.body.classList.contains('index')) {
     initSubscriptionFrom()
-    initLoginForm()
+    authorizeUser()
   } else if (document.body.classList.contains('preview')) {
     initPreviewPage()
   }

@@ -30,10 +30,9 @@
 
       <p>Подпишитесь, чтобы не пропустить релиз:</p>
 
-    <form id="subscribe-form"
+    <form 
       action="http://localhost:3000/api/v1/subscribers.json"
       accept-charset="UTF-8"
-      method="post"
       id="subscription_form"
     >
       <input type="email" placeholder="Ваш e-mail" name="subscriber[email]" id="subscriber_email" />
@@ -47,9 +46,22 @@
     </form>
 
     <br><br>
+    <form 
+          action="http://localhost:3000/api/v1/sign_in.json"
+          accept-charset="UTF-8"
+           method="post"
+          id="login_form"
+        >
 
-    
-    <user_forms></user_forms>
+      <input type="email" placeholder="Ваш e-mail" name="user[email]" id="user_email" />
+      <input type="password" placeholder="Ваш пароль" name="user[password]" id="password" />
 
+      <input
+        type="submit"
+        name="commit"
+        value="Войти"
+        data-disable-with="Войти"
+      />
+    </form>
   </body>
 </html>
