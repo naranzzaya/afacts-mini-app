@@ -121,11 +121,6 @@ p {
     width: 40vw;
   }
 
-  form {
-    display: flex;
-    gap: 0.5rem;
-  }
-
   input[type='email'] {
     padding: 4px;
     font-family: var(--forma);
@@ -149,9 +144,11 @@ p {
     margin: 0;
     line-height: 100%;
     font-size: 1.2rem;
-
-    &:hover {
-      background-color: var(--green_secondary);
-    }
   }
+}
+.coming_soon input[type='submit']:hover {
+  background-color: var(--green_secondary);
+}
+.hidden {
+  display: none;
 }

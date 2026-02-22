@@ -14,7 +14,7 @@
     </div>
 
     <video autoplay muted loop playsinline id="bg-video">
-      <source src="/public/video/a_facts_bg_video.mp4" type="video/mp4" />
+      <!-- <source src="/public/video/a_facts_bg_video.mp4" type="video/mp4" /> -->
     </video>
     <div class="coming_soon">
       <h1>
@@ -33,6 +33,7 @@
     <form 
       action="http://localhost:3000/api/v1/subscribers.json"
       accept-charset="UTF-8"
+      method="post"
       id="subscription_form"
     >
       <input type="email" placeholder="Ваш e-mail" name="subscriber[email]" id="subscriber_email" />
@@ -49,7 +50,8 @@
     <form 
           action="http://localhost:3000/api/v1/sign_in.json"
           accept-charset="UTF-8"
-           method="post"
+          method="post"
+          class="hidden"
           id="login_form"
         >
 

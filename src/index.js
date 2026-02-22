@@ -1,10 +1,9 @@
 import './index.css'
 import Cookies from 'js-cookie'
-
 function initSubscriptionFrom() {
   const form = document.getElementById('subscription_form')
-  const input = document.querySelector('input[type=email]')
-  const submit = document.querySelector('input[type=submit]')
+  const input = form.querySelector('input[type="email"]')
+  const submit = form.querySelector('input[type="submit"]')
   const url = form.action
 
   submit.addEventListener('click', (e) => {
@@ -26,11 +25,10 @@ function initSubscriptionFrom() {
       .then((response) => response.json())
       .then((data) => {
         // console.log(data)
-
         const container = document.createElement('div')
 
         const message = document.createElement('p')
-        message.innerText = data.success_text
+        message.innerText = data.messages
         message.style.marginTop = '20px'
         message.style.fontSize = '2rem'
 
@@ -59,9 +57,18 @@ function authorizeUser() {
       }
     })
       .then((response) => response.json())
+
       .then((data) => {
+        if (data.is_success && data.jwt) {
+          Cookies.set('jwt', data.jwt, { path: '/' })
+        }
+
         console.log(data)
+        const element = document.createElement('div')
+        element.innerText = `Welcome, ${data.email}`
+        document.body.appendChild(element)
       })
+      .then((data) => {})
   } else {
     initLoginForm()
   }
@@ -70,24 +77,8 @@ function authorizeUser() {
 function initLoginForm() {
   const form = document.getElementById('login_form')
   const url = form.action
+  form.classList.remove('hidden')
   console.log('texttext')
-
-  // form.addEventListener('submit', (e) => {
-  //   e.preventDefault()
-
-  //   const formData = new FormData(form)
-
-  //   fetch(url, {
-  //     method: 'POST',
-  //     body: formData
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       console.log(data)
-  //       console.log(data.jwt)
-  //       Cookies.set('jwt', data.jwt)
-  //     })
-  // })
 
   form.addEventListener('submit', (e) => {
     e.preventDefault()
@@ -102,12 +93,12 @@ function initLoginForm() {
     })
       .then((response) => response.json())
       .then((data) => {
-        // console.log(data)
+        console.log('data')
 
         const container = document.createElement('div')
 
         const message = document.createElement('p')
-        message.innerText = data.success_text
+        message.innerText = data.messages
         message.style.marginTop = '20px'
         message.style.fontSize = '2rem'
 
@@ -124,6 +115,7 @@ function initLoginForm() {
       })
   })
 }
+
 function initPreviewPage() {
   const container = document.querySelector('.posts')
   const url = container.dataset.url
@@ -137,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (document.body.classList.contains('index')) {
     initSubscriptionFrom()
     authorizeUser()
-    initLoginForm()
+    // initLoginForm()
   } else if (document.body.classList.contains('preview')) {
     initPreviewPage()
   }
