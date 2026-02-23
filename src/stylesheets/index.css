@@ -50,6 +50,7 @@ body {
   overflow-x: hidden;
   background: #000000;
   color: #fff6ff;
+  background-image: url('../images/background.png');
 }
 h1 {
   font-family: var(--arialbold);

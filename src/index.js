@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (document.body.classList.contains('index')) {
     initSubscriptionFrom()
     authorizeUser()
-    // initLoginForm()
+    initLoginForm()
   } else if (document.body.classList.contains('preview')) {
     initPreviewPage()
   }
