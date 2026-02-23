@@ -1,0 +1,78 @@
+.preview {
+  margin: 0;
+  min-height: 100vh;
+  background: #0b0b0f;
+  overflow: hidden;
+}
+
+.bg-marquee {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  padding: 24px;
+  pointer-events: none;
+  opacity: 0.35;
+}
+
+.bg-col {
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.bg-track {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  will-change: transform;
+}
+
+.bg-tile {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  border-radius: 14px;
+  background-image: var(--img);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: saturate(0.9) contrast(1.05);
+}
+
+/* Анимация: разные скорости и направления */
+.bg-col--1 .bg-track {
+  animation: scrollUp 45s linear infinite;
+}
+
+.bg-col--2 .bg-track {
+  animation: scrollDown 60s linear infinite;
+}
+
+.bg-col--3 .bg-track {
+  animation: scrollUp 52s linear infinite;
+}
+
+@keyframes scrollUp {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes scrollDown {
+  from {
+    transform: translateY(-50%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Контент поверх фона */
+.posts {
+  position: relative;
+  z-index: 1;
+}
