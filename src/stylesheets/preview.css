@@ -14,7 +14,7 @@
   gap: 24px;
   padding: 24px;
   pointer-events: none;
-  opacity: 0.35;
+  opacity: 0.55;
 }
 
 .bg-col {
@@ -40,19 +40,133 @@
   filter: saturate(0.9) contrast(1.05);
 }
 
-/* Анимация: разные скорости и направления */
+/* Анимация*/
 .bg-col--1 .bg-track {
-  animation: scrollUp 45s linear infinite;
+  animation: scrollUp 40s linear infinite;
 }
 
 .bg-col--2 .bg-track {
-  animation: scrollDown 60s linear infinite;
+  animation: scrollDown 50s linear infinite;
 }
 
 .bg-col--3 .bg-track {
   animation: scrollUp 52s linear infinite;
 }
+.bg-tile {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
+  width: 100%;
+  height: 40vh;
+  /* aspect-ratio: 2 / 3; */
+  border-radius: 14px;
+}
+.bg-tile-1 {
+  background-image: url('../images/film01.jpg');
+}
+.bg-tile-2 {
+  background-image: url('../images/film02.jpg');
+}
+.bg-tile-3 {
+  background-image: url('../images/film03.jpg');
+}
+.bg-tile-4 {
+  background-image: url('../images/film04.jpg');
+}
+.bg-tile-5 {
+  background-image: url('../images/film05.jpg');
+}
+.bg-tile-6 {
+  background-image: url('../images/film06.jpg');
+}
+.bg-tile-7 {
+  background-image: url('../images/film07.jpg');
+}
+.bg-tile-8 {
+  background-image: url('../images/film08.jpg');
+}
+.bg-tile-9 {
+  background-image: url('../images/film09.jpg');
+}
+.bg-tile-10 {
+  background-image: url('../images/film10.jpg');
+}
+.bg-tile-11 {
+  background-image: url('../images/film11.jpg');
+}
+.bg-tile-12 {
+  background-image: url('../images/film12.jpg');
+}
+.bg-tile-13 {
+  background-image: url('../images/film13.jpg');
+}
+.bg-tile-14 {
+  background-image: url('../images/film14.jpg');
+}
+.bg-tile-15 {
+  background-image: url('../images/film15.jpg');
+}
+.bg-tile-16 {
+  background-image: url('../images/film16.jpg');
+}
+.bg-tile-17 {
+  background-image: url('../images/film17.jpg');
+}
+.bg-tile-18 {
+  background-image: url('../images/film18.jpg');
+}
+.bg-tile-19 {
+  background-image: url('../images/film19.jpg');
+}
+.bg-tile-20 {
+  background-image: url('../images/film20.jpg');
+}
+.bg-tile-21 {
+  background-image: url('../images/film21.jpg');
+}
+.bg-tile-22 {
+  background-image: url('../images/film22.jpg');
+}
+.bg-tile-23 {
+  background-image: url('../images/film23.jpg');
+}
+.bg-tile-24 {
+  background-image: url('../images/film24.jpg');
+}
+.bg-tile-25 {
+  background-image: url('../images/film25.jpg');
+}
+.bg-tile-26 {
+  background-image: url('../images/film26.jpg');
+}
+.bg-tile-27 {
+  background-image: url('../images/film27.jpg');
+}
+.bg-tile-28 {
+  background-image: url('../images/film28.jpg');
+}
+.bg-tile-29 {
+  background-image: url('../images/film29.jpg');
+}
+.bg-tile-30 {
+  background-image: url('../images/film30.jpg');
+}
+.posts {
+  position: relative;
+  z-index: 1;
+}
+.W_PreviewIntro {
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16vw;
+  margin-left: 25vw;
+  text-align: center;
+  border-bottom: 1px solid white;
+}
 @keyframes scrollUp {
   from {
     transform: translateY(0);
@@ -69,10 +183,4 @@
   to {
     transform: translateY(0);
   }
-}
-
-/* Контент поверх фона */
-.posts {
-  position: relative;
-  z-index: 1;
 }

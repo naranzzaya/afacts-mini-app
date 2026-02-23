@@ -75,7 +75,7 @@ h1 {
   font-size: 2rem;
   margin-bottom: 1.8rem;
   font-family: var(--arialbold);
-  width: 40vw;
+  width: 100%;
 }
 p {
   font-family: var(--golos);
@@ -256,7 +256,7 @@ select:-webkit-autofill:focus {
   box-shadow: 0 0 0px 1000px transparent inset;
 }
 .M_SubscribeResult {
-  margin-top: 16px;
+  margin-top: 0;
   display: flex;
   align-items: center;
   justify-content: flex-start;
