@@ -2,6 +2,7 @@
   --forma: 'Forma DJR Cyrillic', sans-serif;
   --arial: 'Arial Narrow', sans-serif;
   --arialbold: 'Arial Narrow Bold', sans-serif;
+  --golos: 'Golos-Text_Regular', sans-serif;
   --white: #fff6ff;
   --black: #000000;
   --green: #9cff5b;
@@ -44,13 +45,26 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Golos-Text_Regular';
+  src: font-url(
+        '/src/stylesheets/fonts/Golos-Text_Regular-BF63e4626498574.woff'
+      )
+      format('woff'),
+    font-url('/src/stylesheets/fonts/Golos-Text_Regular-BF63e462604bdfd.ttf')
+      format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
 body {
   margin: 0;
-  height: 200vh;
+  /* height: 200vh; */
   overflow-x: hidden;
   background: #000000;
   color: #fff6ff;
   background-image: url('../images/background.png');
+  background-size: cover;
 }
 h1 {
   font-family: var(--arialbold);
@@ -58,16 +72,33 @@ h1 {
   letter-spacing: -0.02em;
   margin: 0;
   line-height: 100%;
-  font-size: 2.8rem;
+  font-size: 2rem;
   margin-bottom: 1.8rem;
   font-family: var(--arialbold);
+  width: 40vw;
 }
 p {
-  font-family: var(--forma);
-  letter-spacing: 0.04em;
-  font-size: 1.4rem;
+  font-family: var(--golos);
   margin: 0;
-  line-height: 140%;
+  color: #fff;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 120%;
+  letter-spacing: 0.06rem;
+  width: 40vw;
+  margin-bottom: 1rem;
+}
+
+.W_Welcome {
+  margin-top: 2rem;
+  font-family: var(--golos);
+  color: #fff;
+  text-align: center;
+  font-size: 1.2rem;
+  line-height: 120%;
+  letter-spacing: 0.06rem;
+  padding: 0 8px 6px 8px;
+  border-bottom: 1px solid white;
 }
 #custom-cursor {
   position: fixed;
@@ -104,52 +135,165 @@ p {
   z-index: -2;
 }
 .coming_soon {
+  width: 60vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 50vw;
-  height: 100vh;
-  margin: auto;
+  margin-top: 12vw;
+  margin-left: 20vw;
   text-align: center;
-
-  p {
-    width: 30vw;
-    margin-bottom: 1rem;
-  }
-
-  h1 {
-    width: 40vw;
-  }
-
-  input[type='email'] {
-    padding: 4px;
-    font-family: var(--forma);
-    letter-spacing: 0.04em;
-    font-size: 1rem;
-    margin: 0;
-    line-height: 140%;
-    background-color: var(--black);
-    border: solid 2px var(--green);
-    color: var(--white);
-  }
-
-  input[type='submit'] {
-    padding: 3px 4px;
-    background: var(--green);
-    border: none;
-    cursor: pointer;
-    font-family: var(--arialbold);
-    text-transform: uppercase;
-    letter-spacing: -0.02em;
-    margin: 0;
-    line-height: 100%;
-    font-size: 1.2rem;
-  }
-}
-.coming_soon input[type='submit']:hover {
-  background-color: var(--green_secondary);
 }
 .hidden {
   display: none;
+}
+.W_Subscribe {
+  padding: 2vw 2vw 3vw 2vw;
+  background-color: var(--black);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 96%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 2vw;
+}
+.A_FooterText {
+  width: auto;
+  font-size: 0.8rem;
+}
+.A_SubscribeEmail {
+  padding: 0 2rem 0 1.4rem;
+  font-family: var(--forma);
+  letter-spacing: 0.04em;
+  font-size: 0.8rem;
+  line-height: 140%;
+  background-color: var(--white);
+  border-radius: 0.5rem;
+  border: none;
+  color: rgba(0, 0, 1, 0.3);
+  height: 2rem;
+}
+.A_SubscribeSubmit {
+  height: 2rem;
+  padding: 0 1.4rem;
+  background-color: var(--pink);
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  font-family: var(--arialbold);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 100%;
+  font-size: 0.8rem;
+
+  &:hover {
+    background-color: var(--pink_secondary);
+  }
+}
+.M_FooterInput {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.A_LoginEmail {
+  padding: 0 2rem 0 1.4rem;
+  font-family: var(--forma);
+  letter-spacing: 0.04em;
+  font-size: 0.8rem;
+  line-height: 140%;
+  background: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  border-bottom: 1px solid var(--white);
+  height: 2rem;
+  color: var(--white);
+  opacity: 1;
+}
+.A_LoginSubmit {
+  /* width: 6rem; */
+  height: 2rem;
+  padding: 0 1.4rem;
+  background-color: var(--pink);
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  font-family: var(--arialbold);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 100%;
+  font-size: 0.8rem;
+
+  &:hover {
+    background-color: var(--pink_secondary);
+  }
+}
+.W_LoginSection {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+}
+.M_LoginInputs {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--white);
+  transition: background-color 999999s ease-in-out 0s; /* трюк чтобы не заливал белым */
+  box-shadow: 0 0 0px 1000px transparent inset;
+}
+.M_SubscribeResult {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+  flex-direction: row;
+}
+
+.A_SubscribeResultText {
+  margin: 0;
+  width: auto;
+  font-family: var(--forma);
+  font-size: 0.8rem;
+  color: var(--white);
+}
+
+.A_SubscribeResultLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--black);
+  text-decoration: none;
+  font-family: var(--arialbold);
+  letter-spacing: -0.02em;
+  height: 2rem;
+  padding: 0 1.4rem;
+  background-color: var(--pink);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  line-height: 100%;
+
+  &:hover {
+    background-color: var(--pink_secondary);
+  }
+}
+.bg-tile {
+  width: auto;
+  height: auto;
 }

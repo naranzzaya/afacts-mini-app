@@ -2,20 +2,18 @@
 <html lang="ru">
   <head>
     <meta charset="utf-8" />
-    <title>mini-app a_facts</title>
+    <title>mini-app AFACTS</title>
     <analytics></analytics>
   </head>
 
   <body class="index">
-    <div id="custom-cursor"></div>
-
     <div id="logo">
       <img src="/public/images/logo.svg" alt="a_facts logo" />
     </div>
 
-    <video autoplay muted loop playsinline id="bg-video">
-      <!-- <source src="/public/video/a_facts_bg_video.mp4" type="video/mp4" /> -->
-    </video>
+    <!-- <video autoplay muted loop playsinline id="bg-video">
+      <source src="/public/video/a_facts_bg_video.mp4" type="video/mp4" />
+    </video> -->
     <div class="coming_soon">
       <h1>
         Медиа-сервис<br>
@@ -28,42 +26,57 @@
         а&nbsp;понимать, как&nbsp;создается его магия.
       </p>
 
-      <p>Подпишитесь, чтобы не пропустить релиз:</p>
-
     <form 
-      action="http://localhost:3000/api/v1/subscribers.json"
-      accept-charset="UTF-8"
-      method="post"
-      id="subscription_form"
-    >
-      <input type="email" placeholder="Ваш e-mail" name="subscriber[email]" id="subscriber_email" />
-
-      <input
-        type="submit"
-        name="commit"
-        value="Подписаться"
-        data-disable-with="Create Subscription"
-      />
-    </form>
-
-    <br><br>
-    <form 
-          action="http://localhost:3000/api/v1/sign_in.json"
-          accept-charset="UTF-8"
-          method="post"
-          class="hidden"
-          id="login_form"
+        class="W_LoginSection"
+        action="http://localhost:3000/api/v1/sign_in.json"
+        accept-charset="UTF-8"
+        method="post"
+        class="hidden"
+        id="login_form"
         >
-
-      <input type="email" placeholder="Ваш e-mail" name="user[email]" id="user_email" />
-      <input type="password" placeholder="Ваш пароль" name="user[password]" id="password" />
-
+      
+      <div class="M_LoginInputs">
+        <input 
+        class="A_LoginEmail"
+        type="email"
+        placeholder="e-mail"
+        name="user[email]"
+        id="user_email" />
+        <input
+        class="A_LoginEmail"
+        type="password"
+        placeholder="Ваш пароль"
+        name="user[password]"
+        id="password" />
+      </div>
       <input
+        class="A_LoginSubmit"
         type="submit"
         name="commit"
         value="Войти"
         data-disable-with="Войти"
       />
     </form>
+    
+    <footer class="W_Subscribe">
+      <section class="M_FooterInput"><p class="A_FooterText">Подпишитесь, чтобы не пропустить релиз!</p>
+      <form 
+      action="http://localhost:3000/api/v1/subscribers.json"
+      accept-charset="UTF-8"
+      method="post"
+      id="subscription_form"
+    >
+      <input class="A_SubscribeEmail" type="email" placeholder="e-mail" name="subscriber[email]" id="subscriber_email" />
+
+      <input
+        class="A_SubscribeSubmit"
+        type="submit"
+        name="commit"
+        value="Подписаться"
+        data-disable-with="Create Subscription"
+      />
+    </form></section>
+      
+    </footer>
   </body>
 </html>

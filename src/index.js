@@ -24,56 +24,109 @@ function initSubscriptionFrom() {
     })
       .then((response) => response.json())
       .then((data) => {
-        // console.log(data)
+        console.log('SUBSCRIBE RESPONSE:', data)
+
+        //старый код
+        // const container = document.createElement('div')
+
+        // const message = document.createElement('p')
+        // message.innerText = data.messages
+        // message.style.marginTop = '20px'
+        // message.style.fontSize = '2rem'
+
+        // const link = document.createElement('a')
+        // link.innerText = 'Посмотрите последние Q&A'
+        // link.href = '/preview.html'
+
+        // container.appendChild(message)
+        // container.appendChild(link)
+        // form.replaceWith(container)
+
+        //-------
         const container = document.createElement('div')
+        container.className = 'M_SubscribeResult'
 
         const message = document.createElement('p')
-        message.innerText = data.messages
-        message.style.marginTop = '20px'
-        message.style.fontSize = '2rem'
+        message.className = 'A_SubscribeResultText'
+
+        if (data.success) {
+          message.innerText = data.success_text
+        } else {
+          message.innerText = data.error_text
+        }
 
         const link = document.createElement('a')
-        link.innerText = 'Посмотрите последние Q&A'
+        link.className = 'A_SubscribeResultLink'
+        link.innerText = 'Посмотреть последние Q&A'
         link.href = '/preview.html'
 
         container.appendChild(message)
-        container.appendChild(link)
+
+        if (data.success) {
+          container.appendChild(link)
+        }
+
         form.replaceWith(container)
+        //-----------------
       })
       .catch((error) => {
         console.error('Ошибка при запросе:', error)
       })
   })
 }
+//старый код
+// function authorizeUser() {
+//   const jwt = Cookies.get('jwt')
 
+//   if (jwt) {
+//     fetch('http://localhost:3000/api/v1/authorize_by_jwt.json', {
+//       method: 'GET',
+//       headers: {
+//         Authorization: `Bearer ${jwt}`
+//       }
+//     })
+//       .then((response) => response.json())
+//       .then((data) => {
+//         console.log(data)
+
+//         if (data.is_success) {
+//           const element = document.createElement('div')
+//           element.innerText = `Welcome, ${data.email}`
+//           document.body.appendChild(element)
+//           // Cookies.set('jwt', data.jwt, { path: '/' })
+//         }
+//       })
+//       .then((data) => {})
+//   } else {
+//     initLoginForm()
+//   }
+// }
+//-------------
 function authorizeUser() {
   const jwt = Cookies.get('jwt')
 
-  if (jwt) {
-    fetch('http://localhost:3000/api/v1/authorize_by_jwt.json', {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${jwt}`
+  if (!jwt) {
+    initLoginForm()
+    return
+  }
+
+  fetch('http://localhost:3000/api/v1/authorize_by_jwt.json', {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${jwt}`
+    }
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.is_success) {
+        showWelcome(data.email)
+      } else {
+        Cookies.remove('jwt')
+        initLoginForm()
       }
     })
-      .then((response) => response.json())
-
-      .then((data) => {
-        if (data.is_success && data.jwt) {
-          Cookies.set('jwt', data.jwt, { path: '/' })
-        }
-
-        console.log(data)
-        const element = document.createElement('div')
-        element.innerText = `Welcome, ${data.email}`
-        document.body.appendChild(element)
-      })
-      .then((data) => {})
-  } else {
-    initLoginForm()
-  }
 }
-
+//-------------
 function initLoginForm() {
   const form = document.getElementById('login_form')
   const url = form.action
@@ -94,27 +147,47 @@ function initLoginForm() {
       .then((response) => response.json())
       .then((data) => {
         console.log('data')
+        //старый код
+        //-------------
+        // const container = document.createElement('div')
 
-        const container = document.createElement('div')
+        // const message = document.createElement('p')
+        // message.innerText = data.messages
+        // message.style.marginTop = '20px'
+        // message.style.fontSize = '2rem'
 
-        const message = document.createElement('p')
-        message.innerText = data.messages
-        message.style.marginTop = '20px'
-        message.style.fontSize = '2rem'
+        // container.appendChild(message)
+        // container.appendChild(link)
+        // form.replaceWith(container)
 
-        const link = document.createElement('a')
-        link.innerText = 'Посмотрите последние Q&A'
-        link.href = '/preview.html'
+        //-------------
+        if (!data.is_success) {
+          alert(data.messages)
+          return
+        }
 
-        container.appendChild(message)
-        container.appendChild(link)
-        form.replaceWith(container)
+        Cookies.set('jwt', data.jwt, { path: '/' })
+        showWelcome(data.email)
+        //-------------
       })
       .catch((error) => {
         console.error('Ошибка при запросе:', error)
       })
   })
 }
+//новая функция
+function showWelcome(email) {
+  const form = document.getElementById('login_form')
+
+  if (form) form.remove()
+
+  const welcome = document.createElement('div')
+  welcome.className = 'W_Welcome'
+  welcome.innerText = `Привет, ${email}!`
+
+  document.querySelector('.coming_soon').appendChild(welcome)
+}
+//-------------
 
 function initPreviewPage() {
   const container = document.querySelector('.posts')
@@ -129,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (document.body.classList.contains('index')) {
     initSubscriptionFrom()
     authorizeUser()
-    initLoginForm()
+    // initLoginForm()
   } else if (document.body.classList.contains('preview')) {
     initPreviewPage()
   }
