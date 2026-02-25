@@ -1,5 +1,8 @@
 import './index.css'
 import Cookies from 'js-cookie'
+
+// Cookies.remove('jwt')
+
 function initSubscriptionFrom() {
   const form = document.getElementById('subscription_form')
   const input = form.querySelector('input[type="email"]')
@@ -74,7 +77,7 @@ function initSubscriptionFrom() {
       })
   })
 }
-//старый код
+//старый код function authorizeUser()
 // function authorizeUser() {
 //   const jwt = Cookies.get('jwt')
 
@@ -107,6 +110,7 @@ function authorizeUser() {
 
   if (!jwt) {
     initLoginForm()
+    initSignupForm()
     return
   }
 
@@ -118,11 +122,23 @@ function authorizeUser() {
   })
     .then((response) => response.json())
     .then((data) => {
+      //старый
+      // if (data.is_success) {
+      //   showWelcome(data.email)
+      // } else {
+      //   Cookies.remove('jwt')
+      //   initLoginForm()
+      // }
+      //-----
+      console.log('AUTH RESPONSE:', data)
+
       if (data.is_success) {
         showWelcome(data.email)
+        showSignOut(jwt)
       } else {
         Cookies.remove('jwt')
         initLoginForm()
+        initSignupForm()
       }
     })
 }
@@ -130,7 +146,7 @@ function authorizeUser() {
 function initLoginForm() {
   const form = document.getElementById('login_form')
   const url = form.action
-  form.classList.remove('hidden')
+  // form.classList.remove('hidden')
   console.log('texttext')
 
   form.addEventListener('submit', (e) => {
@@ -165,9 +181,12 @@ function initLoginForm() {
           alert(data.messages)
           return
         }
-
-        Cookies.set('jwt', data.jwt, { path: '/' })
-        showWelcome(data.email)
+        if (data.jwt) {
+          Cookies.set('jwt', data.jwt, { path: '/' })
+          window.location.reload()
+        } else {
+          alert('Нет jwt в ответе сервера')
+        }
         //-------------
       })
       .catch((error) => {
@@ -175,7 +194,78 @@ function initLoginForm() {
       })
   })
 }
-//новая функция
+function initSignupForm() {
+  const form = document.getElementById('signup_form')
+  const url = form.action
+  console.log('texttext')
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault()
+
+    const formData = new FormData(form)
+    fetch(url, {
+      method: 'POST',
+      body: formData
+      // headers: {
+      //   'Content-Type': 'application/json; charset=UTF-8'
+      // }
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('data')
+        //старый код
+        //-------------
+        // const container = document.createElement('div')
+
+        // const message = document.createElement('p')
+        // message.innerText = data.messages
+        // message.style.marginTop = '20px'
+        // message.style.fontSize = '2rem'
+
+        // container.appendChild(message)
+        // container.appendChild(link)
+        // form.replaceWith(container)
+
+        //-------------
+        if (!data.is_success) {
+          alert(data.messages)
+          return
+        }
+        if (data.jwt) {
+          Cookies.set('jwt', data.jwt, { path: '/' })
+          window.location.reload()
+        } else {
+          alert('Нет jwt в ответе сервера')
+        }
+        //-------------
+      })
+      .catch((error) => {
+        console.error('Ошибка при запросе:', error)
+      })
+  })
+}
+function initAuthSwitch() {
+  const loginForm = document.getElementById('login_form')
+  const signupForm = document.getElementById('signup_form')
+  const btnShowSignup = document.getElementById('show_signup')
+  const btnShowLogin = document.getElementById('show_login')
+
+  if (!loginForm || !signupForm) return
+
+  const showLogin = () => {
+    loginForm.classList.remove('hidden')
+    signupForm.classList.add('hidden')
+  }
+
+  const showSignup = () => {
+    signupForm.classList.remove('hidden')
+    loginForm.classList.add('hidden')
+  }
+
+  btnShowSignup?.addEventListener('click', showSignup)
+  btnShowLogin?.addEventListener('click', showLogin)
+}
+//new function to show text after log in
 function showWelcome(email) {
   const form = document.getElementById('login_form')
 
@@ -188,7 +278,30 @@ function showWelcome(email) {
   document.querySelector('.coming_soon').appendChild(welcome)
 }
 //-------------
+function showSignOut(jwt) {
+  const container = document.querySelector('.coming_soon')
 
+  const btn = document.createElement('button')
+  btn.className = 'A_SignOut'
+  btn.type = 'button'
+  btn.innerText = 'Выйти'
+
+  btn.addEventListener('click', () => {
+    fetch('http://localhost:3000/api/v1/sign_out.json', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${jwt}`
+      }
+    })
+      .then((r) => r.json())
+      .then(() => {
+        Cookies.remove('jwt')
+        window.location.reload()
+      })
+  })
+
+  container.appendChild(btn)
+}
 function initPreviewPage() {
   const container = document.querySelector('.posts')
   const url = container.dataset.url
@@ -201,8 +314,10 @@ function initPreviewPage() {
 document.addEventListener('DOMContentLoaded', () => {
   if (document.body.classList.contains('index')) {
     initSubscriptionFrom()
+    initAuthSwitch()
     authorizeUser()
-    // initLoginForm()
+    initLoginForm()
+    initSignupForm()
   } else if (document.body.classList.contains('preview')) {
     initPreviewPage()
   }

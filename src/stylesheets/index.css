@@ -14,7 +14,19 @@
   --pink_secondary: #ffaeff;
   --cyan_secondary: #a6f9ff;
 }
-
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--white);
+  transition: background-color 999999s ease-in-out 0s; /* трюк чтобы не заливал белым */
+  box-shadow: 0 0 0px 1000px transparent inset;
+}
 @font-face {
   font-family: 'Forma DJR Cyrillic';
   src: font-url(
@@ -90,7 +102,7 @@ p {
 }
 
 .W_Welcome {
-  margin-top: 2rem;
+  margin-top: 1rem;
   font-family: var(--golos);
   color: #fff;
   text-align: center;
@@ -213,8 +225,27 @@ p {
   color: var(--white);
   opacity: 1;
 }
-.A_LoginSubmit {
+.A_LoginSubmit,
+.A_SignOut {
   /* width: 6rem; */
+  height: 2rem;
+  padding: 0 1.4rem;
+  background-color: var(--pink);
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  font-family: var(--arialbold);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 100%;
+  font-size: 0.8rem;
+
+  &:hover {
+    background-color: var(--pink_secondary);
+  }
+}
+.A_SignOut {
+  margin-top: 1rem;
   height: 2rem;
   padding: 0 1.4rem;
   background-color: var(--pink);
@@ -242,19 +273,7 @@ p {
   flex-direction: row;
   gap: 32px;
 }
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-textarea:-webkit-autofill,
-textarea:-webkit-autofill:hover,
-textarea:-webkit-autofill:focus,
-select:-webkit-autofill,
-select:-webkit-autofill:hover,
-select:-webkit-autofill:focus {
-  -webkit-text-fill-color: var(--white);
-  transition: background-color 999999s ease-in-out 0s; /* трюк чтобы не заливал белым */
-  box-shadow: 0 0 0px 1000px transparent inset;
-}
+
 .M_SubscribeResult {
   margin-top: 0;
   display: flex;
@@ -296,4 +315,31 @@ select:-webkit-autofill:focus {
 .bg-tile {
   width: auto;
   height: auto;
+}
+.hidden {
+  display: none !important;
+}
+
+.M_AuthSwitch {
+  display: flex;
+  gap: 0.8rem;
+  margin: 1.2rem 0;
+}
+
+.A_AuthTab {
+  background: transparent;
+  border: 1px solid var(--white);
+  color: var(--white);
+  font-family: var(--arialbold);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  padding: 0.6rem 1rem;
+  border-radius: 0.6rem;
+  cursor: pointer;
+}
+
+.A_AuthTab.is-active {
+  background: var(--pink);
+  color: var(--black);
+  border-color: var(--pink);
 }
