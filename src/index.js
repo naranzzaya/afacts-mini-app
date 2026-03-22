@@ -1,5 +1,6 @@
 import './index.css'
 import Cookies from 'js-cookie'
+import './index.jsx'
 
 // Cookies.remove('jwt')
 

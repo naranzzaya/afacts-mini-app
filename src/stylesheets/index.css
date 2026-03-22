@@ -75,7 +75,7 @@ body {
   overflow-x: hidden;
   background: #000000;
   color: #fff6ff;
-  background-image: url('../images/background.png');
+  /* background-image: url('../images/background.png'); */
   background-size: cover;
 }
 h1 {
@@ -155,6 +155,8 @@ p {
   margin-top: 12vw;
   margin-left: 20vw;
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 .hidden {
   display: none;
@@ -267,6 +269,8 @@ p {
   flex-direction: column;
   gap: 24px;
   align-items: center;
+  position: relative;
+  z-index: 1;
 }
 .M_LoginInputs {
   display: flex;
@@ -342,4 +346,16 @@ p {
   background: var(--pink);
   color: var(--black);
   border-color: var(--pink);
+}
+
+.bg-marquee {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  padding: 24px;
+  pointer-events: none;
+  opacity: 0.55;
 }
