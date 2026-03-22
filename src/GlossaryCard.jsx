@@ -5,13 +5,12 @@ function GlossaryCard({ term, definition, category }) {
 
   return (
     <div className="glossary_card">
-      <button
-        className="glossary_card_button"
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        <span className="glossary_card_term">{term}</span>
-        <span className="glossary_card_category">{category}</span>
-      </button>
+      <div className="glossary_card_header" onClick={() => setIsOpen(!isOpen)}>
+        <div className="glossary_card_top">
+          <span className="glossary_card_term">{term}</span>
+          <span className="glossary_card_category">{category}</span>
+        </div>
+      </div>
 
       {isOpen && <div className="glossary_card_definition">{definition}</div>}
     </div>

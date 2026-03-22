@@ -79,7 +79,31 @@ module.exports = {
         template_filename: '*',
         priority: 'replace'
       }
-    ])
+    ]),
+    // Glossary page
+    new HtmlWebpackPlugin({
+      hash: true,
+      scriptLoading: 'blocking',
+      template: './src/glossary.html',
+      filename: './glossary.html',
+      chunks: ['index']
+    }),
+    // Quiz page
+    new HtmlWebpackPlugin({
+      hash: true,
+      scriptLoading: 'blocking',
+      template: './src/quiz.html',
+      filename: './quiz.html',
+      chunks: ['index']
+    }),
+    // All glossary page
+    new HtmlWebpackPlugin({
+      hash: true,
+      scriptLoading: 'blocking',
+      template: './src/all-glossary.html',
+      filename: './glossary.html',
+      chunks: ['index']
+    })
   ],
   optimization: {
     minimizer: [new CssMinimizerPlugin()]

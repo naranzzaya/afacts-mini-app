@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import GlossaryCard from './GlossaryCard.jsx'
 
 function GlossaryApp() {
-  const [terms, setTerms] = useState([])
+  const [termOfDay, setTermOfDay] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
@@ -15,7 +15,9 @@ function GlossaryApp() {
         return response.json()
       })
       .then((data) => {
-        setTerms(data)
+        const sorted = [...data].sort((a, b) => a.term.localeCompare(b.term))
+
+        setTermOfDay(sorted[0])
         setLoading(false)
       })
       .catch((err) => {
@@ -25,26 +27,35 @@ function GlossaryApp() {
   }, [])
 
   if (loading) {
-    return <p>Загрузка глоссария...</p>
+    return <p>Загрузка термина...</p>
   }
 
   if (error) {
     return <p>{error}</p>
   }
 
+  if (!termOfDay) {
+    return <p>Термин не найден</p>
+  }
+
   return (
     <div className="glossary_app">
-      <h2 className="glossary_title">Глоссарий</h2>
+      <h2 className="glossary_title">Термин дня</h2>
 
-      <div className="glossary_list">
-        {terms.map((term) => (
-          <GlossaryCard
-            key={term.id}
-            term={term.term}
-            definition={term.definition}
-            category={term.category}
-          />
-        ))}
+      <GlossaryCard
+        term={termOfDay.term}
+        definition={termOfDay.definition}
+        category={termOfDay.category}
+      />
+
+      <div className="glossary_actions">
+        <a href="/all-glossary.html" className="glossary_button">
+          Все термины
+        </a>
+
+        <button className="glossary_button glossary_button_secondary">
+          Ещё термин
+        </button>
       </div>
     </div>
   )

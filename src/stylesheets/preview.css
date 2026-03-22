@@ -181,6 +181,54 @@
 .A_PreviewButton:hover {
   opacity: 0.9;
 }
+
+.glossary_app {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.glossary_title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.glossary_list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.glossary_card {
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  padding: 1rem;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.glossary_card_top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.glossary_card_term {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.glossary_card_category {
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+.glossary_card_definition {
+  margin-top: 0.8rem;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
 @keyframes scrollUp {
   from {
     transform: translateY(0);
