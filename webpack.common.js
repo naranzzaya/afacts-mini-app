@@ -101,7 +101,7 @@ module.exports = {
       hash: true,
       scriptLoading: 'blocking',
       template: './src/all-glossary.html',
-      filename: './glossary.html',
+      filename: './all-glossary.html',
       chunks: ['index']
     })
   ],

@@ -181,53 +181,96 @@
 .A_PreviewButton:hover {
   opacity: 0.9;
 }
-
+.glossary_title {
+  font-family: var(--arialbold);
+  font-size: 2rem;
+  color: var(--white);
+  text-align: center;
+  text-transform: uppercase;
+}
 .glossary_app {
   max-width: 600px;
   margin: 0 auto;
   padding: 2rem 1rem;
+  margin-top: 10vh;
+  background-color: #161616;
+  border-radius: 16px;
+  display: flex;
+  gap: 1.2rem;
+  flex-direction: column;
 }
-
-.glossary_title {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-
-.glossary_list {
+.glossary_card {
+  padding: 2rem;
+  background: #282828;
+  cursor: pointer;
+  border-radius: 16px;
+  gap: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  margin-top: 1.2rem;
 }
-
-.glossary_card {
-  border: 1px solid #e5e5e5;
-  border-radius: 12px;
-  padding: 1rem;
-  background: #ffffff;
-  cursor: pointer;
-}
-
-.glossary_card_top {
+.glossary_card_header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
 }
-
 .glossary_card_term {
-  font-weight: bold;
-  font-size: 1.1rem;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  font-family: var(--arialbold);
 }
 
 .glossary_card_category {
   font-size: 0.8rem;
-  opacity: 0.6;
+  text-transform: uppercase;
+  font-family: var(--arialbold);
+  padding: 1rem;
+  border: solid 1px #ffffff;
+  border-radius: 16px;
 }
 
 .glossary_card_definition {
   margin-top: 0.8rem;
-  font-size: 0.95rem;
+  font-size: 1.2rem;
   line-height: 1.4;
+  font-family: var(--golos);
+  color: #a6a6a6;
+}
+.glossary_actions {
+  padding-top: 1.2rem;
+  /* background: #282828; */
+  cursor: pointer;
+  border-radius: 16px;
+  gap: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.glossary_button {
+  border: 1px solid var(--cyan);
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--black);
+  font-family: var(--arialbold);
+  font-size: 1rem;
+  padding: 0.8rem;
+  text-transform: uppercase;
+  background-color: var(--cyan);
+}
+.glossary_button_secondary {
+  color: var(--white);
+  background-color: #161616;
+  border: 1px solid var(--cyan);
+  border-radius: 8px;
+  text-decoration: none;
+  color: #ffffff;
+  font-family: var(--arialbold);
+  font-size: 1rem;
+  padding: 0.8rem;
+  text-transform: uppercase;
 }
 @keyframes scrollUp {
   from {
