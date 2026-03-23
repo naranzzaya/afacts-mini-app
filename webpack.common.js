@@ -95,14 +95,6 @@ module.exports = {
       template: './src/quiz.html',
       filename: './quiz.html',
       chunks: ['index']
-    }),
-    // All glossary page
-    new HtmlWebpackPlugin({
-      hash: true,
-      scriptLoading: 'blocking',
-      template: './src/all-glossary.html',
-      filename: './all-glossary.html',
-      chunks: ['index']
     })
   ],
   optimization: {
