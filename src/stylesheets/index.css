@@ -130,11 +130,11 @@ p {
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
-  pointer-events: none;
+  /* pointer-events: none; */
 }
 
 #logo img {
-  width: 60px;
+  width: 40px;
   display: block;
 }
 #bg-video {
@@ -230,8 +230,7 @@ p {
 .A_LoginSubmit,
 .A_SignOut {
   /* width: 6rem; */
-  height: 2rem;
-  padding: 0 1.4rem;
+  padding: 0.8rem;
   background-color: var(--pink);
   border-radius: 0.5rem;
   border: none;
@@ -332,7 +331,7 @@ p {
 
 .A_AuthTab {
   background: transparent;
-  border: 1px solid var(--white);
+  border: 1px solid var(--pink);
   color: var(--white);
   font-family: var(--arialbold);
   text-transform: uppercase;
@@ -358,4 +357,71 @@ p {
   padding: 24px;
   pointer-events: none;
   opacity: 0.55;
+}
+.A_SignOutPreview {
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--black);
+  font-family: var(--arialbold);
+  font-size: 1rem;
+  padding: 0.8rem;
+  text-transform: uppercase;
+  background-color: var(--pink);
+}
+@media (max-width: 640px) {
+  p {
+    width: 100%;
+    font-size: 1.2rem;
+  }
+  .A_LoginEmail,
+  .A_FooterText {
+    font-size: 1.2rem;
+  }
+  .coming_soon {
+    width: 100vw;
+    margin-left: 0;
+    padding: 0 2rem;
+    margin-top: 20vh;
+  }
+  .W_LoginSection {
+    width: 100%;
+    padding: 0 2rem;
+  }
+  .M_LoginInputs {
+    flex-direction: column;
+    width: 100%;
+  }
+  .A_LoginEmail {
+    height: 4rem;
+  }
+  .M_AuthSwitch {
+    width: 100%;
+    flex-direction: column;
+  }
+  .A_AuthTab,
+  .A_LoginSubmit {
+    padding: 1.2rem;
+  }
+  .M_FooterInput {
+    width: 100%;
+  }
+  .W_Subscribe {
+    padding: 2rem 2rem 4rem 2rem;
+    width: 88%;
+  }
+  #subscription_form {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .A_SubscribeEmail {
+    width: 60%;
+    padding: 0 0 0 1.4rem;
+  }
+  .A_SubscribeSubmit {
+    width: 30%;
+  }
+  .bg-marquee {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }

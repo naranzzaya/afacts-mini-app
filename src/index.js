@@ -59,16 +59,7 @@ function initSubscriptionFrom() {
           message.innerText = data.error_text
         }
 
-        const link = document.createElement('a')
-        link.className = 'A_SubscribeResultLink'
-        link.innerText = 'Посмотреть последние Q&A'
-        link.href = '/preview.html'
-
         container.appendChild(message)
-
-        if (data.success) {
-          container.appendChild(link)
-        }
 
         form.replaceWith(container)
         //-----------------
@@ -135,7 +126,6 @@ function authorizeUser() {
 
       if (data.is_success) {
         showWelcome(data.email)
-        showSignOut(jwt)
       } else {
         Cookies.remove('jwt')
         initLoginForm()
@@ -146,49 +136,36 @@ function authorizeUser() {
 //-------------
 function initLoginForm() {
   const form = document.getElementById('login_form')
+  if (!form || form.dataset.bound === 'true') return
+
+  form.dataset.bound = 'true'
   const url = form.action
-  // form.classList.remove('hidden')
-  console.log('texttext')
 
   form.addEventListener('submit', (e) => {
     e.preventDefault()
 
     const formData = new FormData(form)
+
     fetch(url, {
       method: 'POST',
       body: formData
-      // headers: {
-      //   'Content-Type': 'application/json; charset=UTF-8'
-      // }
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('data')
-        //старый код
-        //-------------
-        // const container = document.createElement('div')
+        console.log('LOGIN RESPONSE:', data)
 
-        // const message = document.createElement('p')
-        // message.innerText = data.messages
-        // message.style.marginTop = '20px'
-        // message.style.fontSize = '2rem'
-
-        // container.appendChild(message)
-        // container.appendChild(link)
-        // form.replaceWith(container)
-
-        //-------------
         if (!data.is_success) {
           alert(data.messages)
           return
         }
+
         if (data.jwt) {
           Cookies.set('jwt', data.jwt, { path: '/' })
-          window.location.reload()
+          sessionStorage.setItem('welcomeEmail', formData.get('user[email]'))
+          window.location.href = '/preview.html'
         } else {
           alert('Нет jwt в ответе сервера')
         }
-        //-------------
       })
       .catch((error) => {
         console.error('Ошибка при запросе:', error)
@@ -204,41 +181,27 @@ function initSignupForm() {
     e.preventDefault()
 
     const formData = new FormData(form)
+
     fetch(url, {
       method: 'POST',
       body: formData
-      // headers: {
-      //   'Content-Type': 'application/json; charset=UTF-8'
-      // }
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('data')
-        //старый код
-        //-------------
-        // const container = document.createElement('div')
+        console.log('SIGNUP RESPONSE:', data)
 
-        // const message = document.createElement('p')
-        // message.innerText = data.messages
-        // message.style.marginTop = '20px'
-        // message.style.fontSize = '2rem'
-
-        // container.appendChild(message)
-        // container.appendChild(link)
-        // form.replaceWith(container)
-
-        //-------------
         if (!data.is_success) {
           alert(data.messages)
           return
         }
+
         if (data.jwt) {
           Cookies.set('jwt', data.jwt, { path: '/' })
-          window.location.reload()
+          sessionStorage.setItem('welcomeEmail', formData.get('user[email]'))
+          window.location.href = '/preview.html'
         } else {
           alert('Нет jwt в ответе сервера')
         }
-        //-------------
       })
       .catch((error) => {
         console.error('Ошибка при запросе:', error)
@@ -279,13 +242,11 @@ function showWelcome(email) {
   document.querySelector('.coming_soon').appendChild(welcome)
 }
 //-------------
-function showSignOut(jwt) {
-  const container = document.querySelector('.coming_soon')
+function initPreviewSignOut() {
+  const jwt = Cookies.get('jwt')
+  const btn = document.getElementById('preview_sign_out')
 
-  const btn = document.createElement('button')
-  btn.className = 'A_SignOut'
-  btn.type = 'button'
-  btn.innerText = 'Выйти'
+  if (!btn || !jwt) return
 
   btn.addEventListener('click', () => {
     fetch('http://localhost:3000/api/v1/sign_out.json', {
@@ -294,14 +255,15 @@ function showSignOut(jwt) {
         Authorization: `Bearer ${jwt}`
       }
     })
-      .then((r) => r.json())
+      .then((response) => response.json())
       .then(() => {
         Cookies.remove('jwt')
-        window.location.reload()
+        window.location.href = '/index.html'
+      })
+      .catch((error) => {
+        console.error('Ошибка при выходе:', error)
       })
   })
-
-  container.appendChild(btn)
 }
 function initPreviewPage() {
   const container = document.querySelector('.posts')
@@ -312,14 +274,43 @@ function initPreviewPage() {
     })
   )
 }
+function showPreviewWelcome() {
+  const email = sessionStorage.getItem('welcomeEmail')
+  if (!email) return
+
+  const intro = document.querySelector('.W_PreviewIntro')
+  if (!intro) return
+
+  const welcome = document.createElement('p')
+  welcome.className = 'W_PreviewWelcome'
+  welcome.innerText = `Привет, ${email}!`
+
+  intro.prepend(welcome)
+
+  sessionStorage.removeItem('welcomeEmail')
+}
+function initLogoLink() {
+  const logo = document.getElementById('logo')
+  if (!logo) return
+
+  const jwt = Cookies.get('jwt')
+
+  if (jwt) {
+    logo.href = '/preview.html'
+  } else {
+    logo.href = '/index.html'
+  }
+}
 document.addEventListener('DOMContentLoaded', () => {
+  initLogoLink()
+
   if (document.body.classList.contains('index')) {
     initSubscriptionFrom()
     initAuthSwitch()
     authorizeUser()
-    initLoginForm()
-    initSignupForm()
   } else if (document.body.classList.contains('preview')) {
     initPreviewPage()
+    showPreviewWelcome()
+    initPreviewSignOut()
   }
 })

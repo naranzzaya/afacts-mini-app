@@ -112,7 +112,18 @@ function QuizApp() {
     : []
 
   if (view === 'all') {
-    return <QuizListApp onSelectQuiz={(id) => loadQuizById(id, false)} />
+    return (
+      <QuizListApp
+        onSelectQuiz={(id) => loadQuizById(id, false)}
+        onBackToDaily={() => {
+          if (dailyQuiz) {
+            setQuestions(dailyQuiz.quiz_questions || [])
+            resetQuizState()
+            setView('daily')
+          }
+        }}
+      />
+    )
   }
 
   if (isFinished) {
@@ -127,16 +138,15 @@ function QuizApp() {
         </p>
 
         <div className="quiz_actions">
-          <button className="quiz_button" onClick={() => setView('all')}>
-            Все квизы
+          <button className="quiz_button" onClick={resetQuizState}>
+            Пройти заново
           </button>
 
           <button
-            className="quiz_button"
-            onClick={handleNextQuestion}
-            disabled={selectedAnswer === null}
+            className="quiz_button_secondary"
+            onClick={() => setView('all')}
           >
-            Следующий вопрос
+            Все квизы
           </button>
         </div>
       </div>
@@ -155,7 +165,7 @@ function QuizApp() {
         Вопрос {currentIndex + 1} из {questions.length}
       </div>
 
-      <div className="quiz_card">
+      <div className="quiz_question_card">
         <div className="quiz_question">{currentQuestion.question}</div>
 
         <div className="quiz_answers">
@@ -183,18 +193,22 @@ function QuizApp() {
             )
           })}
         </div>
+      </div>
+      <div className="quiz_actions">
+        <button
+          className="quiz_button_secondary"
+          onClick={() => setView('all')}
+        >
+          Все квизы
+        </button>
 
-        <div className="quiz_actions">
-          {showResult ? (
-            <button className="quiz_button" onClick={handleNextQuestion}>
-              Следующий вопрос
-            </button>
-          ) : (
-            <button className="quiz_button" onClick={() => setView('all')}>
-              Все квизы
-            </button>
-          )}
-        </div>
+        <button
+          className="quiz_button"
+          onClick={handleNextQuestion}
+          disabled={selectedAnswer === null}
+        >
+          Следующий вопрос
+        </button>
       </div>
     </div>
   )

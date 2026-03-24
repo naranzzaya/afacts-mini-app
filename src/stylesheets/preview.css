@@ -3,6 +3,9 @@
   min-height: 100vh;
   background: #0b0b0f;
   overflow: hidden;
+  background-image: url('/src/images/background.png');
+  background-size: cover;
+  background-position: center;
 }
 
 .bg-col {
@@ -145,13 +148,13 @@
   z-index: 1;
 }
 .W_PreviewIntro {
-  width: 50vw;
+  width: 80vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 16vw;
-  margin-left: 25vw;
+  margin-top: 18vh;
+  margin-left: 10vw;
   text-align: center;
 }
 .M_PreviewButtons {
@@ -160,22 +163,31 @@
   margin-top: 2rem;
   justify-content: center;
 }
-
+.A_PreviewTitle {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
 .A_PreviewButton {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-width: 180px;
   height: 56px;
-  padding: 0 1.5rem;
+  padding: 4rem;
+  border: 1px solid var(--pink);
   border-radius: 0.8rem;
-  background: #ff78ff;
-  color: #000000;
+  color: var(--white);
   text-decoration: none;
   font-family: Arial, sans-serif;
   font-weight: bold;
   text-transform: uppercase;
   font-size: 1rem;
+  transition: transform 0.2s ease, border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+.A_PreviewButton:hover {
+  transform: scale(1.02);
+  background-color: rgba(255, 120, 255, 0.5);
 }
 
 .A_PreviewButton:hover {
@@ -190,7 +202,8 @@
   text-transform: uppercase;
 }
 .glossary_app,
-.quiz_app {
+.quiz_app,
+.quiz_list_app {
   margin: 0 auto;
   padding: 2rem;
   margin-top: 10vh;
@@ -205,19 +218,9 @@
   max-width: 600px;
 }
 
-.glossary_app_all {
+.glossary_app_all,
+.quiz_app_all {
   max-width: 1100px;
-}
-.glossary_card,
-.quiz_card {
-  padding: 2rem;
-  background: #282828;
-  cursor: pointer;
-  border-radius: 16px;
-  gap: 2rem;
-  display: flex;
-  flex-direction: column;
-  margin-top: 1.2rem;
 }
 .glossary_card_header {
   display: flex;
@@ -226,19 +229,46 @@
   gap: 1rem;
   margin-bottom: 0.8rem;
 }
+.glossary_card,
+.quiz_question_card,
+.quiz_list_card {
+  padding: 2rem;
+  background: #282828;
+  cursor: pointer;
+  border-radius: 16px;
+  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.2rem;
+  text-align: center;
+}
+.quiz_list_card {
+  align-items: center;
+  width: 26%;
+  justify-content: space-between;
+  transition: transform 0.2s ease, border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+.quiz_list_card:hover {
+  transform: scale(1.02);
+  border-color: #ffffff;
+  background-color: rgba(156, 255, 91, 0.08);
+}
 .glossary_card_term,
-.quiz_question {
-  font-size: 1.4rem;
-  text-transform: uppercase;
-  font-family: var(--arialbold);
+.quiz_question,
+.quiz_list_card_title {
   font-size: 1.4rem;
   text-transform: uppercase;
   font-family: var(--arialbold);
   line-height: normal;
-  text-align: center;
 }
-
-.glossary_card_category {
+.quiz_list_card_title {
+  border-bottom: 1px solid #a6a6a6;
+  width: 100%;
+  padding-bottom: 1rem;
+}
+.glossary_card_category,
+.quiz_list_card_category {
   font-size: 0.8rem;
   text-transform: uppercase;
   font-family: var(--arialbold);
@@ -250,14 +280,22 @@
   color: #000000;
 }
 
-.glossary_card_definition {
+.glossary_card_definition,
+.quiz_card_description,
+.quiz_list_card_description {
   margin-top: 0.8rem;
   font-size: 1.2rem;
   line-height: 1.4;
   font-family: var(--golos);
   color: #a6a6a6;
+  text-align: left;
 }
-.glossary_actions {
+.quiz_list_card_description {
+  text-align: center;
+  line-height: normal;
+}
+.glossary_actions,
+.quiz_actions {
   padding-top: 1.2rem;
   /* background: #282828; */
   cursor: pointer;
@@ -268,7 +306,8 @@
   justify-content: flex-end;
 }
 
-.glossary_button {
+.glossary_button,
+.quiz_button {
   border: 1px solid var(--cyan);
   border-radius: 8px;
   text-decoration: none;
@@ -279,7 +318,12 @@
   text-transform: uppercase;
   background-color: var(--cyan);
 }
-.glossary_button_secondary {
+.quiz_button {
+  border: 1px solid var(--green);
+  background-color: var(--green);
+}
+.glossary_button_secondary,
+.quiz_button_secondary {
   color: var(--white);
   background-color: #161616;
   border: 1px solid var(--cyan);
@@ -291,7 +335,9 @@
   padding: 0.8rem;
   text-transform: uppercase;
 }
-
+.quiz_button_secondary {
+  border: 1px solid var(--green);
+}
 .glossary_header {
   display: flex;
   justify-content: space-between;
@@ -335,21 +381,24 @@
 .glossary_empty {
   margin: 0;
 }
-.glossary_toolbar {
+.glossary_toolbar,
+.quiz_toolbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
 }
 
-.glossary_filters {
+.glossary_,
+.quiz_filters {
   display: flex;
   gap: 0.6rem;
   flex-wrap: wrap;
   justify-content: flex-end;
 }
 
-.glossary_filter_button {
+.glossary_filter_button,
+.quiz_filter_button {
   border: 1px solid #333333;
   border-radius: 999px;
   background: transparent;
@@ -360,9 +409,63 @@
   text-transform: uppercase;
 }
 
-.glossary_filter_button_active {
+.glossary_filter_button_active,
+.quiz_filter_button_active {
   background: #ffffff;
   color: #161616;
+}
+/* quiz */
+
+.quiz_progress,
+.quiz_result_text {
+  font-size: 1.2rem;
+  line-height: 1.4;
+  font-family: var(--golos);
+  color: #a6a6a6;
+  text-align: center;
+  width: 100%;
+}
+.quiz_answer {
+  border: 1px solid #a6a6a6;
+  border-radius: 12px;
+  padding: 1rem;
+  background: none;
+  outline: none;
+  box-shadow: none;
+  appearance: none;
+  -webkit-appearance: none;
+  font-size: 1.2rem;
+  line-height: 1.4;
+  font-family: var(--golos);
+  color: #a6a6a6;
+  width: 100%;
+  transition: border-color 0.6s ease;
+}
+.quiz_answer:hover {
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  background-color: rgba(156, 255, 91, 0.1);
+}
+.quiz_answers {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.quiz_button:disabled {
+  border-color: #555555;
+  color: #777777;
+  cursor: not-allowed;
+  background-color: #161616;
+}
+.quiz_list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.W_PreviewFooter {
+  display: flex;
+  justify-content: center;
+  margin-top: 20vh;
 }
 @keyframes scrollUp {
   from {
@@ -383,7 +486,9 @@
 }
 
 @media (max-width: 640px) {
-  .glossary_app {
+  .glossary_app,
+  .quiz_app,
+  .quiz_app_all {
     width: calc(100vw - 100px);
     padding: 2rem;
     border-radius: 12px;
@@ -394,8 +499,10 @@
     font-size: 2rem;
   }
 
-  .glossary_card_term {
+  .glossary_card_term,
+  .quiz_list_card_title {
     font-size: 1.2rem;
+    text-align: left;
   }
 
   .glossary_card_definition {
@@ -405,11 +512,14 @@
 
   .glossary_card_category,
   .glossary_row_category,
-  .glossary_filter_button {
+  .glossary_filter_button,
+  .quiz_list_card_category,
+  .quiz_filter_button {
     font-size: 0.6rem;
   }
   .glossary_button,
-  .glossary_button_secondary {
+  .glossary_button_secondary,
+  .quiz_button_secondary {
     font-size: 0.8rem;
   }
   .glossary_search {
@@ -426,52 +536,47 @@
   }
   .glossary_header,
   .glossary_toolbar,
-  .glossary_row {
+  .glossary_row,
+  .quiz_toolbar {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
   }
+  .quiz_toolbar {
+    margin-top: 1.5rem;
+  }
   .glossary_search {
     width: 100%;
   }
-}
-
-/* quiz */
-
-.quiz_progress {
-  font-size: 1.2rem;
-  line-height: 1.4;
-  font-family: var(--golos);
-  color: #a6a6a6;
-  text-align: center;
-}
-.quiz_answer {
-  border: 1px solid #333333;
-  border-radius: 12px;
-  padding: 1rem;
-  transition: border-color 0.6s ease;
-  background: none;
-  outline: none;
-  box-shadow: none;
-  appearance: none;
-  -webkit-appearance: none;
-  font-size: 1.2rem;
-  line-height: 1.4;
-  font-family: var(--golos);
-  color: #a6a6a6;
-  width: 100%;
-}
-.quiz_answer:hover {
-  border: 1px solid #ffffff;
-  background-color: rgba(106, 245, 255, 0.1);
-}
-.quiz_answers {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-.quiz_button:disabled {
-  border-color: #555555;
-  color: #777777;
-  cursor: not-allowed;
+  .quiz_list {
+    flex-direction: column;
+  }
+  .quiz_list_card {
+    width: 80%;
+    gap: 1.2rem;
+  }
+  .preview {
+    padding: 0 2rem;
+    margin-top: 16vh;
+  }
+  .W_PreviewIntro {
+    width: 100%;
+    margin-left: 0;
+  }
+  .A_PreviewText {
+    width: 100%;
+    font-size: 1.2rem;
+  }
+  .A_PreviewButton {
+    height: 100px;
+    font-size: 1.2rem;
+    padding: 1.4rem;
+  }
+  .M_PreviewButtons {
+    width: 100%;
+    flex-direction: column;
+  }
+  .W_PreviewFooter {
+    margin-top: 5vh;
+  }
 }

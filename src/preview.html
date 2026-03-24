@@ -9,15 +9,18 @@
   </head>
 
   <body class="preview">
+    <a id="logo" href="/index.html">
+      <img src="/public/images/logo.svg" alt="a_facts logo" />
+    </a>
     <section
       class="posts"
       data-url="http://localhost:3000/api/v1/welcome/preview"
     >
       <div class="W_PreviewIntro">
-        <h1 class="A_PreviewTitle">Погружайтесь в мир магии кино</h1>
+        <h1 class="A_PreviewTitle">Погружайтесь в мир визуальных эффектов</h1>
         <p class="A_PreviewText">
-          Узнайте, как создаются визуальные эффекты, меняющие восприятие
-          реальности.
+          Понимайте, как создаются эффекты&nbsp;&mdash; через квизы
+          и&nbsp;глоссарий
         </p>
 
         <div class="M_PreviewButtons">
@@ -26,5 +29,8 @@
         </div>
       </div>
     </section>
+    <div class="W_PreviewFooter">
+      <button id="preview_sign_out" class="A_SignOutPreview">Выйти</button>
+    </div>
   </body>
 </html>

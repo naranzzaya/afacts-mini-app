@@ -2,14 +2,16 @@
 <html lang="ru">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>mini-app AFACTS</title>
     <analytics></analytics>
   </head>
 
   <body class="index">
-    <div id="logo">
+    <a id="logo" href="/index.html">
       <img src="/public/images/logo.svg" alt="a_facts logo" />
-    </div>
+    </a>
 
     <div class="coming_soon">
       <h1>
@@ -48,16 +50,15 @@
         />
       </div>
       <div class="M_AuthSwitch">
-        <button type="button" class="A_AuthTab" id="show_signup">
-          Зарегистрироваться
-        </button>
         <input
           class="A_LoginSubmit"
           type="submit"
           name="commit"
           value="Войти"
           data-disable-with="Войти"
-        />
+        /><button type="button" class="A_AuthTab" id="show_signup">
+          Зарегистрироваться
+        </button>
       </div>
     </form>
     <!-- sign_up -->
@@ -92,8 +93,6 @@
         />
       </div>
       <div class="M_AuthSwitch">
-        <button type="button" class="A_AuthTab" id="show_login">Войти</button>
-
         <input
           class="A_LoginSubmit"
           type="submit"
@@ -101,6 +100,7 @@
           value="Зарегистрироваться"
           data-disable-with="Зарегистрироваться"
         />
+        <button type="button" class="A_AuthTab" id="show_login">Войти</button>
       </div>
     </form>
     <section class="bg-marquee" aria-hidden="true">
@@ -190,7 +190,6 @@
     </section>
     <footer class="W_Subscribe">
       <section class="M_FooterInput">
-        <p class="A_FooterText">Подпишитесь, чтобы не пропустить релиз!</p>
         <form
           action="http://localhost:3000/api/v1/subscribers.json"
           accept-charset="UTF-8"
