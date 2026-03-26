@@ -30,23 +30,6 @@ function initSubscriptionFrom() {
       .then((data) => {
         console.log('SUBSCRIBE RESPONSE:', data)
 
-        //старый код
-        // const container = document.createElement('div')
-
-        // const message = document.createElement('p')
-        // message.innerText = data.messages
-        // message.style.marginTop = '20px'
-        // message.style.fontSize = '2rem'
-
-        // const link = document.createElement('a')
-        // link.innerText = 'Посмотрите последние Q&A'
-        // link.href = '/preview.html'
-
-        // container.appendChild(message)
-        // container.appendChild(link)
-        // form.replaceWith(container)
-
-        //-------
         const container = document.createElement('div')
         container.className = 'M_SubscribeResult'
 
@@ -69,34 +52,6 @@ function initSubscriptionFrom() {
       })
   })
 }
-//старый код function authorizeUser()
-// function authorizeUser() {
-//   const jwt = Cookies.get('jwt')
-
-//   if (jwt) {
-//     fetch('http://localhost:3000/api/v1/authorize_by_jwt.json', {
-//       method: 'GET',
-//       headers: {
-//         Authorization: `Bearer ${jwt}`
-//       }
-//     })
-//       .then((response) => response.json())
-//       .then((data) => {
-//         console.log(data)
-
-//         if (data.is_success) {
-//           const element = document.createElement('div')
-//           element.innerText = `Welcome, ${data.email}`
-//           document.body.appendChild(element)
-//           // Cookies.set('jwt', data.jwt, { path: '/' })
-//         }
-//       })
-//       .then((data) => {})
-//   } else {
-//     initLoginForm()
-//   }
-// }
-//-------------
 function authorizeUser() {
   const jwt = Cookies.get('jwt')
 
@@ -114,14 +69,6 @@ function authorizeUser() {
   })
     .then((response) => response.json())
     .then((data) => {
-      //старый
-      // if (data.is_success) {
-      //   showWelcome(data.email)
-      // } else {
-      //   Cookies.remove('jwt')
-      //   initLoginForm()
-      // }
-      //-----
       console.log('AUTH RESPONSE:', data)
 
       if (data.is_success) {
